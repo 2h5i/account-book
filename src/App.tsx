@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useMemo } from 'react';
+import { Route } from 'react-router-dom';
+import Home from './pages';
+import Header from './pages/Header';
+import Menu2 from './pages/Menu2';
+import Menu3 from './pages/Menu3';
 
 function App() {
+  const menus = useMemo(
+    () => [
+      {
+        name: '메뉴1',
+        component: Home,
+        path: '/',
+      },
+      {
+        name: '메뉴2',
+        component: Menu2,
+        path: '/2',
+      },
+      {
+        name: '메뉴3',
+        component: Menu3,
+        path: '/3',
+      },
+    ],
+    []
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React Test
-        </a>
-      </header>
+      <Header menus={menus} />
+      {menus.map((m) => (
+        <>
+          <Route path={m.path} component={m.component} exact />
+        </>
+      ))}
     </div>
   );
 }
