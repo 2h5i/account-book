@@ -30,9 +30,9 @@ function App() {
   return (
     <div className="App">
       <Header menus={menus} />
-      {menus.map((m) => (
+      {menus.map((m, i) => (
         <>
-          <Route path={m.path} component={m.component} exact />
+          <Route key={i} path={m.path} component={m.component} exact />
         </>
       ))}
     </div>

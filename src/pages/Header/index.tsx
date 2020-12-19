@@ -12,17 +12,17 @@ const Header: React.FC<IHeader> = ({ menus }) => {
     <>
       <div className="header">ACCOUNT BOOK</div>
       <div className="menus">
-        {menus.map((m) => (
-          <Link to={m.path} style={{ textDecoration: 'none' }}>
+        {menus.map((m, i) => (
+          <Link key={i} to={m.path} style={{ textDecoration: 'none' }}>
             <div
               className="menu"
-              key={m.name}
               onClick={(e) => {
                 setMenu(m.name);
               }}
               style={{
                 backgroundColor: m.name === menu ? 'gray' : 'lightgray',
               }}
+              key={i}
             >
               {m.name}
             </div>
